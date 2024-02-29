@@ -28,9 +28,21 @@ Bezier curve
     The following are all numbers stored as strings {
         Danceability
         Energy
-        Key
+        Key ==> (0 - 11)
+            0 --> C
+            1 --> C#
+            2 --> D  
+            3 --> D#
+            4 --> E
+            5 --> F
+            6 --> F#
+            7 --> G
+            8 --> G#
+            9 --> A
+            10 --> A#
+            11 --> B     
         Loudness
-        Mode
+        Mode ==> Major (1) / Minor (2)
         Speechiness
         Acousticness
         Instrumentalness
@@ -51,3 +63,6 @@ loadImage(svgfilename);
 
 # Concept 
 - Living city rather than buildings; feels like graph otherwise
+
+# Sorting list of objects
+override sort operator

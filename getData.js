@@ -7,23 +7,21 @@ function parseData() {
       let r = table.getRow(i);
 
       let name = r.getString("Artist Name(s)");
-      artists.add(name);
-
-      let title = r.getString("Track Name");
       let key = r.getString("Key");
+      let mode = r.getString("Mode");
+      let energy = r.getString("Energy");
       let length = r.getString("Duration (ms)");
-
-      allTracks.push(new Track(i, title, key, length));
+      
+      artists.add(name);
+      allTracks.push(new Track(i, key, mode, energy, length));
     }
-  
-    // artists = new Set(allArtists);
-    print(artists.size);
 
-    debugTracks();
+    // print(`Number of unique artists: ${artists.size}`); // 388
+    // debugTracks();
 }
 
 function debugTracks() {
     allTracks.forEach ((t) => (
-        print(`${t.index}, ${t.title}, ${t.key}, ${t.length}`)
-    ));
+        print(`${t.index}, ${t.key}, ${t.mode}, ${t.energy}, ${t.length}`)
+    ))
 }

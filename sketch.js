@@ -1,4 +1,5 @@
 let table;
+var move;
 
 function preload() {
   let playlist = "assets/a2_playlist.csv";
@@ -10,24 +11,22 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  // debug();
   parseData();
+
+  move = {
+    x: 100,
+    y: width / 2
+  }
+
+  gsap.to(move, {
+    x: width - 100,
+    y: height / 2,
+    duration: 2,
+    ease: "expo.inOut",
+  });
 }
 
 function draw() {
   background(220);
-}
-
-
-function debug() {
-  table.columns.forEach((c) => {
-    print(`${c}: ${typeof c}`);
-  });
-
-  for (let i = 0; i < table.getRowCount(); i++) {
-    let r = table.getRow(i);
-    let s = r.getString("Artist Name(s)");
-    print(`${i} ${s}`);
-  }
+  circle(move.x, move.y, 50);
 }
