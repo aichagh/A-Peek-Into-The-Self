@@ -9,15 +9,21 @@ class Track {
 }
 
 class Tenant {
-    constructor(track, x, y) {
+    constructor(track) {
         this.track = track;
 
+        this.x = 0;
+        this.y = 0;
+    }
+
+    updatePos(x, y) {
         this.x = x;
         this.y = y;
     }
 
     draw() {
-        circle(0,0,0) // placeholder
+        color(0);
+        circle(this.x, this.y, 50) // placeholder
     }
 
     update() {
@@ -35,15 +41,3 @@ class Tenant {
     }
 }
 
-// the index allows to zoom in on a random window
-// and randomly assign a tenant
-class Window {
-    constructor(i) {
-        this.currentTenant;
-        this.index = i;
-    }
-
-    changeTenant(t) {
-        this.currentTenant = t;
-    }
-}

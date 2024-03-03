@@ -3,6 +3,8 @@ let allTracks = [];
 
 function parseData() {
 
+    print("starting data parsing");
+
     for (let i = 0; i < table.getRowCount(); i++) {
       let r = table.getRow(i);
 
@@ -13,7 +15,11 @@ function parseData() {
       let length = r.getString("Duration (ms)");
       
       artists.add(name);
-      allTracks.push(new Track(i, key, mode, energy, length));
+
+      let temp = new Tenant(new Track(i, key, mode, energy, length), 0, 0);
+      tenants.push(temp);
+
+      print("added track");
     }
 
     // print(`Number of unique artists: ${artists.size}`); // 388
