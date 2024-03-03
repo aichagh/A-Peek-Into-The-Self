@@ -2,7 +2,8 @@
 // and randomly assign a tenant
 class Window {
     constructor(t, i, x, y) {
-        this.currentTenant = t
+        this.localTenants = t;
+        this.currentTenant = t[0];
 
         this.index = i;
         this.x = x;
@@ -12,12 +13,13 @@ class Window {
     }
 
     changeTenant(t) {
-        this.currentTenant = t;
+        this.currentTenant = this.localTenants[round(Math.random() * (this.localTenants.length - 1))];
     }
 
     draw() {
         push();
         noStroke();
+        fill('rgba(0%, 0%, 100%, 0.5)')
         rect(this.x, this.y, 75, 100);
         pop();
 
@@ -28,11 +30,24 @@ class Window {
 function createWindows(n) {
   let x = width / 2 - 175;
   let y = 75;
+  let start = 0;
+  const total = round(tenants.length / w_num);
+  let end = total;
 
   for(let i = 1; i <= n; i++) {
     
-    let t = tenants[round(Math.random() * tenants.length)]
-    let temp = new Window(t, i, x, y);
+    let localTemp = [];
+
+    for(let j = start; j < end; j++) {
+        localTemp.push(tenants[j]);
+    }
+
+    start += total;
+    end += total;
+
+    if(end > tenants.length) {end = tenants.length}
+
+    let temp = new Window(localTemp, i, x, y);
     windows.push(temp);
 
     if(i % 4 == 0) {
