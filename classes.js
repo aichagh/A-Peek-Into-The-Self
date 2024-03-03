@@ -22,8 +22,10 @@ class Tenant {
     }
 
     draw() {
+        push();
         color(0);
-        circle(this.x, this.y, 50) // placeholder
+        circle(this.x, this.y, 50); // placeholder
+        pop();
     }
 
     update() {

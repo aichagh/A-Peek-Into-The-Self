@@ -1,4 +1,4 @@
-const w_num = 15; // number of windows to draw
+const w_num = 20; // number of windows to draw
 
 let table;
 let windows = [];
@@ -10,8 +10,6 @@ function preload() {
   table = loadTable(playlist, "csv", "header", function () {
     print("loaded");
   });
-
-
 }
 
 function setup() {

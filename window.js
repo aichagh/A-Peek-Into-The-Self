@@ -8,7 +8,7 @@ class Window {
         this.x = x;
         this.y = y;
 
-        this.currentTenant.updatePos(this.x + 25, this.y + 25);
+        this.currentTenant.updatePos(x + 37.5, y + 50);
     }
 
     changeTenant(t) {
@@ -18,25 +18,26 @@ class Window {
     draw() {
         push();
         noStroke();
-        rect(this.x, this.y, 50, 50);
-        this.currentTenant.draw();
+        rect(this.x, this.y, 75, 100);
         pop();
+
+        this.currentTenant.draw();
     }
 }
 
 function createWindows(n) {
-  let x = 250;
-  let y = 50;
+  let x = width / 2 - 175;
+  let y = 75;
 
   for(let i = 1; i <= n; i++) {
     
-    let t = tenants[round(Math.random(tenants.length))]
+    let t = tenants[round(Math.random() * tenants.length)]
     let temp = new Window(t, i, x, y);
     windows.push(temp);
 
-    if(i % 3 == 0) {
-      x = 250;
-      y += 100;
+    if(i % 4 == 0) {
+      x = width / 2 - 175;
+      y += 125;
     } else {
       x += 100;
     }
