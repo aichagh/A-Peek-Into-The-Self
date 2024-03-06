@@ -1,3 +1,4 @@
+// associates a color to each key
 function colorFromKey(k) {
     switch (k) {
         case 0:
@@ -61,7 +62,7 @@ class Tenant {
         push();
         noStroke();
         fill(0);
-        circle(this.x, this.y, 20); // placeholder
+        circle(this.x, this.y, 20);
         circle(this.x, this.y + 30, 40)
         rect(this.x - 20, this.y + 30, 40, 25)
         pop();
@@ -83,28 +84,3 @@ class Tenant {
         });
     }
 }
-
-// function setGradient(x, y, w, h, c1, c2, axis) {
-//     noFill();
-  
-//     if (axis === Y_AXIS) {
-//       // Top to bottom gradient
-//       for (let i = y; i <= y + h; i++) {
-//         let inter = map(i, y, y + h, 0, 1);
-//         let c = lerpColor(c1, c2, inter);
-//         stroke(c);
-//         line(x, i, x + w, i);
-//       }
-//       noStroke();
-
-//     } else if (axis === X_AXIS) {
-//       // Left to right gradient
-//       for (let i = x; i <= x + w; i++) {
-//         let inter = map(i, x, x + w, 0, 1);
-//         let c = lerpColor(c1, c2, inter);
-//         stroke(c);
-//         line(i, y, i, y + h);
-//       }
-//       noStroke();
-//     }
-//   }
