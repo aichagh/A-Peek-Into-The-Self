@@ -36,8 +36,8 @@ class Track {
         this.index = index;
         this.key = round(key); // 0 - 11
         this.mode = mode; // 0 or 1
-        this.energy = energy * 10; // 0 - 1
-        this.length = round(map(length, 56000, 1039653, 3, 7, true)) * 3;
+        this.energy = round(map(energy, 0, 1, 2, 5, true)); // 0 - 1
+        this.length = round(map(length, 56000, 1039653, 10, 20, true));
     }
 }
 
@@ -70,51 +70,41 @@ class Tenant {
     update() {
 
         gsap.to(this, {
-            x: this.x,
-            y: this.y,
-
-            duration: Math.random() * 30 + 20,
-
-            onComplete: () => {
-                this.active = true;
-            }
-        });
-
-        gsap.to(this, {
             // x: this.x + this.track.energy,    
             duration: this.track.length,
             ease: "sine.out",
-            y: this.y + 5,
+            y: this.y + this.track.energy,
 
+            repeat: 2,
+    
             onComplete: () => {
                 this.active = false;
             }
         });
-    
     }
 }
 
-function setGradient(x, y, w, h, c1, c2, axis) {
-    noFill();
+// function setGradient(x, y, w, h, c1, c2, axis) {
+//     noFill();
   
-    if (axis === Y_AXIS) {
-      // Top to bottom gradient
-      for (let i = y; i <= y + h; i++) {
-        let inter = map(i, y, y + h, 0, 1);
-        let c = lerpColor(c1, c2, inter);
-        stroke(c);
-        line(x, i, x + w, i);
-      }
-      noStroke();
+//     if (axis === Y_AXIS) {
+//       // Top to bottom gradient
+//       for (let i = y; i <= y + h; i++) {
+//         let inter = map(i, y, y + h, 0, 1);
+//         let c = lerpColor(c1, c2, inter);
+//         stroke(c);
+//         line(x, i, x + w, i);
+//       }
+//       noStroke();
 
-    } else if (axis === X_AXIS) {
-      // Left to right gradient
-      for (let i = x; i <= x + w; i++) {
-        let inter = map(i, x, x + w, 0, 1);
-        let c = lerpColor(c1, c2, inter);
-        stroke(c);
-        line(i, y, i, y + h);
-      }
-      noStroke();
-    }
-  }
+//     } else if (axis === X_AXIS) {
+//       // Left to right gradient
+//       for (let i = x; i <= x + w; i++) {
+//         let inter = map(i, x, x + w, 0, 1);
+//         let c = lerpColor(c1, c2, inter);
+//         stroke(c);
+//         line(i, y, i, y + h);
+//       }
+//       noStroke();
+//     }
+//   }

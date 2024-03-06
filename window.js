@@ -17,7 +17,7 @@ class Window {
     changeTenant() {
       this.currentTenant.active = false;
       this.currentTenant = this.localTenants[round(Math.random() * (this.localTenants.length - 1))];
-      this.currentTenant.active = false;
+      this.currentTenant.active = true;
       this.currentTenant.updatePos(this.x + 37.5, this.y + 50);
     }
 
@@ -37,43 +37,6 @@ class Window {
 
         rect(this.x, this.y, 75, 100);
         pop();
-
-        fill(232, 222, 202);
-        stroke(232, 222, 202);
-        strokeWeight(2.5);
-        line(this.x, this.y, this.x + 75, this.y);
-        line(this.x + 75, this.y, this.x + 75, this.y + 100);
-        line(this.x, this.y + 100, this.x + 75, this.y + 100);
-        line(this.x, this.y, this.x, this.y + 100);
-        line(this.x + 37.5, this.y, this.x + 37.5, this.y + 100);
-        line(this.x, this.y + 47.5, this.x + 75, this.y + 47.5);
-
-        noStroke();
-        rect(((width / 2) - 230), 0, 485, 40);
-
-        fill(207, 200, 186);
-        rect(((width / 2) - 220), 40, 465, 10);
-
-        fill(82, 21, 11);
-        rect(((width / 2) - 210), 50, 445, 5);
-
-        stroke(82, 21, 11);
-        fill(82, 21, 11);
-        strokeWeight(3.5);
-        line(this.x, this.y + 102.5, this.x + 75, this.y + 102.5)
-
-        noStroke();
-
-        fill(107, 29, 15);
-        rect(((width / 2) - 210), 175 + 3.5, 445, 25 - 3.5);
-        rect(((width / 2) - 210), 300 + 3.5, 445, 25 - 3.5);
-        rect(((width / 2) - 210), 425 + 3.5, 445, 25 - 3.5);
-        rect(((width / 2) - 210), 550 + 3.5, 445, 25 - 3.5);
-        rect(((width / 2) - 210), 675 + 3.5, 445, 100);
-        
-        fill(64, 16, 8);
-        rect(width / 2 - 35, height - 110, 100, 125 )
-
     }
 }
 
