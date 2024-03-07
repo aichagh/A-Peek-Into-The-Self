@@ -48,19 +48,14 @@ class Tenant {
 
         this.x = 0;
         this.y = 0;
-        this.specX = 0;
-        this.specY = 0;
 
         this.color = colorFromKey(this.track.key);
         this.active = false;
-        this.playing = false;
     }
 
     updatePos(x, y) {
         this.x = x;
         this.y = y;
-        // this.specX = x + 20;
-        // this.specY = y + 30;
     }
 
     draw() {
@@ -70,20 +65,17 @@ class Tenant {
         circle(this.x, this.y, 20);
         circle(this.x, this.y + 30, 40)
         rect(this.x - 20, this.y + 30, 40, 25);
-        // rect(this.specX, this.specY, 10, 50);
         pop();
     }
 
     update() {
 
             gsap.to(this, {
-                // x: -0.25,
                 duration: this.track.length,
                 ease: "elastic.out(1, 0.1, 3)",
             
                 onComplete: () => {
                     this.active = false;
-                    // tl.kill();
                 }
             })
     }
