@@ -75,26 +75,17 @@ class Tenant {
     }
 
     update() {
-        let tl = gsap.timeline();
 
-        if(!this.playing){
-            tl.play();
-            this.playing = true;
-        } else {
-            tl.to(this, {
+            gsap.to(this, {
                 // x: -0.25,
                 duration: this.track.length,
                 ease: "elastic.out(1, 0.1, 3)",
-                
-                repeat: this.track.key,
-                yoyo: true,
             
                 onComplete: () => {
                     this.active = false;
                     // tl.kill();
                 }
             })
-        }
     }
 }
 
