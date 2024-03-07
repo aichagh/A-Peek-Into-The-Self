@@ -36,7 +36,7 @@ class Track {
     constructor(index, key, mode, energy, length) {
         this.index = index;
         this.key = round(key); // 0 - 11
-        this.mode = mode; // 0 or 1
+        this.mode = round(mode); // 0 or 1
         this.energy = round(map(energy, 0, 1, 1, 5, true)); // 0 - 1
         this.length = round(map(length, 56000, 1039653, 10, 20, true));
     }
@@ -48,6 +48,8 @@ class Tenant {
 
         this.x = 0;
         this.y = 0;
+        this.specX = 0;
+        this.specY = 0;
 
         this.color = colorFromKey(this.track.key);
         this.active = false;
@@ -57,6 +59,8 @@ class Tenant {
     updatePos(x, y) {
         this.x = x;
         this.y = y;
+        // this.specX = x + 20;
+        // this.specY = y + 30;
     }
 
     draw() {
@@ -65,46 +69,31 @@ class Tenant {
         fill(0);
         circle(this.x, this.y, 20);
         circle(this.x, this.y + 30, 40)
-        rect(this.x - 20, this.y + 30, 40, 25)
+        rect(this.x - 20, this.y + 30, 40, 25);
+        // rect(this.specX, this.specY, 10, 50);
         pop();
     }
 
     update() {
-        let tl = gsap.timeline()
-
-        // tl.to(this, {
-        //     x: this.track.energy,
-        //     duration: this.track.length / 2,
-        //     ease: "bounce.out",
-            
-        //     // repeat: this.track.key,
-        //     // yoyo: true,
-        
-        //     // onComplete: () => {
-        //     //     this.active = false;
-        //     //     tl.kill();
-        //     // }
-        // })
-
-        tl.to(this, {
-            x: -1,
-            duration: this.track.length / 2,
-            ease: "elastic.out(1, 0.1, 3)",
-            
-            immediateRender: false,
-
-            // repeat: this.track.key,
-            // yoyo: true,
-        
-            onComplete: () => {
-                this.active = false;
-                tl.kill();
-            }
-        })
+        let tl = gsap.timeline();
 
         if(!this.playing){
             tl.play();
             this.playing = true;
+        } else {
+            tl.to(this, {
+                // x: -0.25,
+                duration: this.track.length,
+                ease: "elastic.out(1, 0.1, 3)",
+                
+                repeat: this.track.key,
+                yoyo: true,
+            
+                onComplete: () => {
+                    this.active = false;
+                    // tl.kill();
+                }
+            })
         }
     }
 }

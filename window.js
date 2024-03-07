@@ -9,7 +9,7 @@ class Window {
         this.x = x;
         this.y = y;
 
-        this.currentTenant.updatePos(x + 70, y + 50);
+        this.currentTenant.updatePos(x + 75, y + 50);
 
         this.changed = false;
         this.start = millis();
@@ -24,7 +24,13 @@ class Window {
       this.wait = (round(Math.random() * 30) + 20) * 1000;
       
       this.currentTenant.active = false;
-      this.currentTenant.updatePos(this.x + 37.5, this.y + 50);
+
+      if(this.currentTenant.track.mode) {
+        this.currentTenant.updatePos(this.x + 75, this.y + 60);
+
+      } else {
+        this.currentTenant.updatePos(this.x + 37.5, this.y + 50);
+      }
     }
 
     draw() {
@@ -49,7 +55,12 @@ class Window {
           fill(0);
 
         } else {
-          this.currentTenant.updatePos(this.x + 70, this.y + 50);
+          if(this.currentTenant.track.mode) {
+            this.currentTenant.updatePos(this.x + round(Math.random(-1, 1)) * 75, this.y + 60 + round(Math.random()) * 10);
+    
+          } else {
+            this.currentTenant.updatePos(this.x + 37.5 + round(Math.random(-1, 1)) * 10, this.y + 50 + round(Math.random(-1, 1)) * 10);
+          } 
           fill(0);
         }
 
