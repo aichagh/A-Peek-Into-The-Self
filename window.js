@@ -46,13 +46,13 @@ class Window {
           
         } else if((millis() - this.start) >= this.wait){
           this.currentTenant.active = true;
-          fill(0, 10);
+          fill(0);
           this.changed = false;
           
         } else if(!this.changed){
           this.changeTenant();
           this.changed = true;
-          fill(0, 10);
+          fill(0);
 
         } else {
           if(this.currentTenant.track.mode) {
@@ -61,7 +61,7 @@ class Window {
           } else {
             this.currentTenant.updatePos(this.x + 37.5 + round(Math.random(-1, 1)) * 10, this.y + 50 + round(Math.random(-1, 1)) * 10);
           } 
-          fill(0, 10);
+          fill(0);
         }
 
         rect(this.x, this.y, 75, 100);
