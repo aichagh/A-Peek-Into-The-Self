@@ -3,6 +3,9 @@ const w_num = 20; // number of windows to draw
 var x1 = 0;
 var x2;
 
+let timeStart;
+let night = false;
+
 var scrollSpeed = 0.5;
 // const Y_AXIS = 1;
 // const X_AXIS = 2;
@@ -10,7 +13,7 @@ var scrollSpeed = 0.5;
 let table;
 let windows = [];
 let tenants = [];
-let sky, clouds, building, curtain;
+let sky, skyDay, skyNight, clouds, building, curtain;
 let bgs = [];
 
 function preload() {
@@ -20,7 +23,8 @@ function preload() {
     print("loaded");
   });
 
-  sky = loadImage("./assets/Sky.png");
+  skyDay = loadImage("./assets/Sky.png");
+  skyNight = loadImage("./assets/SkyNight.png")
   clouds = loadImage("./assets/Clouds.png");
   building = loadImage("./assets/Building.png");
 
@@ -37,9 +41,24 @@ function setup() {
 
   parseData();
   createWindows(w_num);
+
+  timeStart = millis();
+  sky = skyDay
 }
 
 function draw() {
+  // if(millis() - timeStart >= 300000) {
+  //   if(night) {
+  //     sky = skyDay;
+  //     night = false;
+  //     timeStart = millis();
+  //   } else {
+  //     sky = skyNight;
+  //     night = true;
+  //     timeStart = millis();
+  //   }
+  // }
+
   image(sky, 0, 0, width, height);
 
   // ++++++++++++++++++++++++++++++++++

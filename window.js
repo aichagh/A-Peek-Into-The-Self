@@ -9,15 +9,21 @@ class Window {
         this.x = x;
         this.y = y;
 
-        this.currentTenant.updatePos(x + 37.5, y + 50);
+        this.currentTenant.updatePos(x + 70, y + 50);
 
         this.changed = false;
+        this.start = millis();
+        this.wait = (round(Math.random() * 30) + 20) * 1000
     }
 
     changeTenant() {
       this.currentTenant.active = false;
       this.currentTenant = this.localTenants[round(Math.random() * (this.localTenants.length - 1))];
-      this.currentTenant.active = true;
+      
+      this.start = millis();
+      this.wait = (round(Math.random() * 30) + 20) * 1000;
+      
+      this.currentTenant.active = false;
       this.currentTenant.updatePos(this.x + 37.5, this.y + 50);
     }
 
@@ -28,12 +34,24 @@ class Window {
         noStroke();
         if(this.currentTenant.active) {
           fill(this.currentTenant.color);
-        } else {
+          this.currentTenant.update();
+          this.changed = false;
+          this.start = millis();
+          
+        } else if((millis() - this.start) >= this.wait){
+          this.currentTenant.active = true;
+          fill(0);
+          this.changed = false;
+          
+        } else if(!this.changed){
           this.changeTenant();
-          fill (0);
-        }
+          this.changed = true;
+          fill(0);
 
-        this.currentTenant.update();
+        } else {
+          this.currentTenant.updatePos(this.x + 70, this.y + 50);
+          fill(0);
+        }
 
         rect(this.x, this.y, 75, 100);
         pop();

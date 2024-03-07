@@ -37,7 +37,7 @@ class Track {
         this.index = index;
         this.key = round(key); // 0 - 11
         this.mode = mode; // 0 or 1
-        this.energy = round(map(energy, 0, 1, 2, 5, true)); // 0 - 1
+        this.energy = round(map(energy, 0, 1, 1, 5, true)); // 0 - 1
         this.length = round(map(length, 56000, 1039653, 10, 20, true));
     }
 }
@@ -51,6 +51,7 @@ class Tenant {
 
         this.color = colorFromKey(this.track.key);
         this.active = false;
+        this.playing = false;
     }
 
     updatePos(x, y) {
@@ -69,18 +70,42 @@ class Tenant {
     }
 
     update() {
+        let tl = gsap.timeline()
 
-        gsap.to(this, {
-            // x: this.x + this.track.energy,    
-            duration: this.track.length,
-            ease: "sine.out",
-            y: this.y + this.track.energy,
+        // tl.to(this, {
+        //     x: this.track.energy,
+        //     duration: this.track.length / 2,
+        //     ease: "bounce.out",
+            
+        //     // repeat: this.track.key,
+        //     // yoyo: true,
+        
+        //     // onComplete: () => {
+        //     //     this.active = false;
+        //     //     tl.kill();
+        //     // }
+        // })
 
-            repeat: 2,
-    
+        tl.to(this, {
+            x: -1,
+            duration: this.track.length / 2,
+            ease: "elastic.out(1, 0.1, 3)",
+            
+            immediateRender: false,
+
+            // repeat: this.track.key,
+            // yoyo: true,
+        
             onComplete: () => {
                 this.active = false;
+                tl.kill();
             }
-        });
+        })
+
+        if(!this.playing){
+            tl.play();
+            this.playing = true;
+        }
     }
 }
+
