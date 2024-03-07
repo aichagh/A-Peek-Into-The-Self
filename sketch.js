@@ -44,6 +44,7 @@ function setup() {
 
   timeStart = millis();
   sky = skyDay
+  noCursor();
 }
 
 function draw() {
