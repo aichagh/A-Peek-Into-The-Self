@@ -1,6 +1,6 @@
 # A Peek Into The Self
 
-## Demo: 
+## Demo
 https://www.youtube.com/watch?v=lcTKnT3bzd8&ab_channel=GhidaouiAicha
 
 ## Artist Statement
